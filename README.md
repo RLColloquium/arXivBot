@@ -7,7 +7,7 @@ Slack で arXiv の URL を書くとタイトルやアブストラクト等を�
 
 ## 実装と設定
 
-Heroku アカウントの作成から heroku login までを以下のページを参考に済ませておきます. このチュートリアルは Web アプリの例なので, 今回はあまり参考にならないかもです. 今回のは worker というタイプのアプリです.
+以下のチュートリアルを参考に, Heroku アカウントの作成から heroku login まで済ませておきます(Postgres をインストールする必要はありません). このチュートリアルは Web アプリの例なので, 今回はあまり参考にならないかもです. 今回のは worker というタイプのアプリです.
 
 https://devcenter.heroku.com/articles/getting-started-with-python
 
