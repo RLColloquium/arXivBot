@@ -21,7 +21,7 @@ def arxiv_abs(message, arxiv_id):
         u = r['updated_parsed']
         p = r['published_parsed']
         date = '{}/{}/{}, {}/{}/{}'.format(p.tm_year, p.tm_mon, p.tm_mday, u.tm_year, u.tm_mon, u.tm_mday)
-        comment = r['arxiv_comment']
+        comment = r['arxiv_comment'] or ''
         r['date_tags_comment'] = date + ', ' + tags + ', ' + comment
         r['summary'] = re.sub('\n', ' ', r['summary'])
         message.send('\n'.join([str(r[field]) for field in FIELDS]))
