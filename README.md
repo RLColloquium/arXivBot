@@ -2,6 +2,8 @@
 
 Slack で arXiv の URL を書くとタイトルやアブストラクト等を通知するボット
 
+![image](https://user-images.githubusercontent.com/1632335/86212298-bbf21a00-bbb2-11ea-912f-1a152fede6ad.png)
+
 
 ## 実装と設定
 
