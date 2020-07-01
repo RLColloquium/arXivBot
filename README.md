@@ -15,13 +15,13 @@ https://qiita.com/akabei/items/ec5179794f9e4e1df203#slack-bot%E4%BD%9C%E6%88%90
 
 ただし, `slackbot_settings.py` の API Token はソースコード中には書かずに,
 
-```slackbot_settings.py
+```Python
 API_TOKEN = '<API Token>'
 ```
 
 以下のように環境変数 SLACK_API_TOKEN で設定しておきます.
 
-```
+```Python
 import os
 
 API_TOKEN = os.environ['SLACK_API_TOKEN']
@@ -35,7 +35,7 @@ CLI のコマンドか Web で設定できますが, CLI だとシェルのヒ�
 
 ローカルで実験する時は ~/.zshrc に書いておきます.
 
-```
+```sh
 SLACK_API_TOKEN="xxxxx"
 ```
 
@@ -46,7 +46,7 @@ SLACK_API_TOKEN="xxxxx"
 
 今の所, 以下のようなサイクルで開発しています.
 
-```
+```sh
 (コードを変更)
 python run.py # ローカルでテスト
 (Slack で動作確認)
