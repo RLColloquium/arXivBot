@@ -124,4 +124,6 @@ git push heroku master # Heroku にアップロードされてコードが更新
 
 - https://devcenter.heroku.com/articles/getting-started-with-python
 - https://api.slack.com/bot-users
+- https://www.deepl.com/docs-api/introduction/
 - https://qiita.com/akabei/items/ec5179794f9e4e1df203
+- https://qiita.com/seratch/items/a001985ee1dccaf95727
