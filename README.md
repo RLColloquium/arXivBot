@@ -1,6 +1,6 @@
 # arXivBot
 
-Slack で arXiv の URL を書くとタイトルやアブストラクト等を通知するボット
+[Slack](https://slack.com/) で [arXiv](https://arxiv.org/) の URL を書くとタイトルやアブストラクト等を通知するボット
 
 [DeepL API](https://www.deepl.com/docs-api/introduction/) での翻訳にも対応しています.
 
@@ -9,11 +9,7 @@ Slack で arXiv の URL を書くとタイトルやアブストラクト等を�
 
 ## 設定方法
 
-### Heroku アカウントの作成と CLI のインストール
-
-以下のチュートリアルを参考に, Heroku アカウントの作成から CLI のインストールまで済ませておきます(Postgres をインストールする必要はありません). このチュートリアルは web アプリの例なので, 今回はあまり参考にならないかもです. 今回のは worker というタイプのアプリです.
-
-https://devcenter.heroku.com/articles/getting-started-with-python
+ここでは [Heroku](https://www.heroku.com/) で arXivBot をホスティングする方法を説明します.
 
 
 ### Slack Bots アプリを追加
@@ -27,7 +23,11 @@ https://qiita.com/akabei/items/ec5179794f9e4e1df203#slack-bot%E4%BD%9C%E6%88%90
 
 作った Slack Bots アプリをテスト用の Slack チャンネルに招待しておきます.
 
-https://api.slack.com/bot-users
+例: ボットの名前を arXiv にした場合, 招待したいチャンネルで,
+
+```
+/invite @arXiv
+```
 
 
 ### ローカルの環境変数の設定
@@ -58,12 +58,19 @@ python run.py  # ローカルで動くかテスト
 ```
 
 
+### Heroku アカウントの作成と CLI のインストール
+
+以下のチュートリアルを参考に, Heroku アカウントの作成から CLI のインストールまで済ませておきます(Postgres をインストールする必要はありません). このチュートリアルは web アプリの例なので, 今回はあまり参考にならないかもです. このアプリは worker という種類のアプリです.
+
+https://devcenter.heroku.com/articles/getting-started-with-python
+
+
 ### Heroku 環境の設定
 
 Heroku のアプリ作成を以下のようにします.
 
 ```sh
-heroku login  # もしまだしてなければ
+heroku login
 heroku create rl-colloquium-arxivbot  # 任意のアプリ名を指定.
 git remote -v  # heroku が追加されているか確認
 ```
@@ -103,7 +110,6 @@ https://qiita.com/akabei/items/ec5179794f9e4e1df203#%E8%B5%B7%E5%8B%95
 ```
 heroku logs --tail
 ```
-
 
 
 ## 開発サイクル
