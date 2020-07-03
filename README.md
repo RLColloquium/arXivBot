@@ -5,55 +5,115 @@ Slack で arXiv の URL を書くとタイトルやアブストラクト等を�
 ![image](https://user-images.githubusercontent.com/1632335/86212298-bbf21a00-bbb2-11ea-912f-1a152fede6ad.png)
 
 
-## 実装と設定
+## 設定方法
 
-以下のチュートリアルを参考に, Heroku アカウントの作成から heroku login まで済ませておきます(Postgres をインストールする必要はありません). このチュートリアルは Web アプリの例なので, 今回はあまり参考にならないかもです. 今回のは worker というタイプのアプリです.
+### Heroku アカウントの作成と CLI のインストール
+
+以下のチュートリアルを参考に, Heroku アカウントの作成から CLI のインストールまで済ませておきます(Postgres をインストールする必要はありません). このチュートリアルは web アプリの例なので, 今回はあまり参考にならないかもです. 今回のは worker というタイプのアプリです.
 
 https://devcenter.heroku.com/articles/getting-started-with-python
 
-それ以降は, 基本的には以下のページ通りに実装して Heroku にデププロイします.
+
+### Slack Bots アプリを追加
+
+以下のページを参考に Slack の Bots アプリを作成して API Token をメモしておきます.
 
 https://qiita.com/akabei/items/ec5179794f9e4e1df203#slack-bot%E4%BD%9C%E6%88%90
 
-ただし, `slackbot_settings.py` の API Token はソースコード中には書かずに,
 
-```Python
-API_TOKEN = '<API Token>'
+### Slack Bots アプリの招待
+
+作った Slack Bots アプリをテスト用の Slack チャンネルに招待しておきます.
+
+https://api.slack.com/bot-users
+
+
+### ローカルの環境変数の設定
+
+上記でメモした API Token は環境変数 `SLACKBOT_API_TOKEN` で設定しておきます.
+
+ローカルでテストする場合は, 環境変数を ~/.zshrc に書いておきます.
+
+```sh
+export SLACKBOT_API_TOKEN="xxxxx"
 ```
 
-以下のように環境変数 SLACK_API_TOKEN で設定しておきます.
 
-```Python
-import os
+### ローカル環境の設定
 
-API_TOKEN = os.environ['SLACK_API_TOKEN']
+ローカル環境の設定と動作確認を以下のようにします.
+
+```sh
+git clone git@github.com:RLColloquium/arXivBot.git
+cd arXivBot
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python run.py  # ローカルで動くかテスト
+# Slack で動作確認
 ```
 
-Heroku での環境変数の設定方法は以下のページを参照.
+
+### Heroku 環境の設定
+
+Heroku のアプリ作成を以下のようにします.
+
+```sh
+heroku login  # もしまだしてなければ
+heroku create rl-colloquium-arxivbot  # 任意のアプリ名を指定.
+git remote -v  # heroku が追加されているか確認
+```
+
+Heroku へのデプロイは以下のようにします.
+
+```sh
+git push heroku master  # Heroku にコードをアップロード
+```
+
+### Heroku の環境変数の設定
+
+以下ページを参考に, Heroku 側での環境変数を設定します.
 
 https://devcenter.heroku.com/articles/config-vars
 
 CLI のコマンドか Web で設定できますが, CLI だとシェルのヒストリに残ってしまうので Web で設定した方が良いかもしれません.
 
-ローカルで実験する時は ~/.zshrc に書いておきます.
+https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard
 
-```sh
-SLACK_API_TOKEN="xxxxx"
+
+### Heroku アプリの起動
+
+以下ページを参考に, Heroku アプリを起動します.
+
+https://qiita.com/akabei/items/ec5179794f9e4e1df203#%E8%B5%B7%E5%8B%95
+
+
+### Heroku のログを確認
+
+別ターミナルを開いて, ログを確認しておきます.
+
+```
+heroku logs --tail
 ```
 
-上記記事中の my_slackbot.py は任意のファイル名で OK です.
 
 
 ## 開発サイクル
 
-今の所, 以下のようなサイクルで開発しています.
+以下のようなサイクルで開発しています.
 
 ```sh
-(コードを変更)
+# コードを変更
 python run.py # ローカルでテスト
-(Slack で動作確認)
+# Slack で動作確認
 git add
 git commit
 git push heroku master # Heroku にアップロードされてコードが更新
-(Slack で動作確認)
+# Slack で動作確認
 ```
+
+## 参考
+
+- https://devcenter.heroku.com/articles/getting-started-with-python
+- https://api.slack.com/bot-users
+- https://qiita.com/akabei/items/ec5179794f9e4e1df203
