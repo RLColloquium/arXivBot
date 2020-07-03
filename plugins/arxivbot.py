@@ -7,7 +7,7 @@ from slackbot.bot import listen_to
 from arxiv import query
 
 
-TRANSLATE_DEEPL_CACHE_MAXSIZE = 128 # TODO: optimize memory vs hits rate
+TRANSLATE_DEEPL_CACHE_MAXSIZE = 512 # TODO: optimize memory vs hits rate
 
 
 # pp = PrettyPrinter(indent=4)
