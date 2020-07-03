@@ -2,7 +2,9 @@
 
 Slack で arXiv の URL を書くとタイトルやアブストラクト等を通知するボット
 
-![image](https://user-images.githubusercontent.com/1632335/86212298-bbf21a00-bbb2-11ea-912f-1a152fede6ad.png)
+[DeepL API](https://www.deepl.com/docs-api/introduction/) での翻訳にも対応しています.
+
+![image](https://user-images.githubusercontent.com/1632335/86489762-53689000-bda0-11ea-89aa-42ddf6e2e797.png)
 
 
 ## 設定方法
@@ -30,13 +32,15 @@ https://api.slack.com/bot-users
 
 ### ローカルの環境変数の設定
 
-上記でメモした API Token は環境変数 `SLACKBOT_API_TOKEN` で設定しておきます.
+上記でメモした Slack Bots の API Token を環境変数 `SLACKBOT_API_TOKEN` で設定しておきます.
 
 ローカルでテストする場合は, 環境変数を ~/.zshrc に書いておきます.
 
 ```sh
 export SLACKBOT_API_TOKEN="xxxxx"
 ```
+
+DeepL API を使う場合は, 同様に `DEEPL_AUTH_KEY` も設定しておきます.
 
 
 ### ローカル環境の設定
@@ -72,6 +76,8 @@ git push heroku master  # Heroku にコードをアップロード
 
 ### Heroku の環境変数の設定
 
+以前メモした Slack Bots の API Token を環境変数 `SLACKBOT_API_TOKEN` で設定しておきます.
+
 以下ページを参考に, Heroku 側での環境変数を設定します.
 
 https://devcenter.heroku.com/articles/config-vars
@@ -79,6 +85,8 @@ https://devcenter.heroku.com/articles/config-vars
 CLI のコマンドか Web で設定できますが, CLI だとシェルのヒストリに残ってしまうので Web で設定した方が良いかもしれません.
 
 https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard
+
+DeepL API を使う場合は, 同様に `DEEPL_AUTH_KEY` も設定しておきます.
 
 
 ### Heroku アプリの起動
