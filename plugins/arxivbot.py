@@ -43,7 +43,7 @@ def translate_deepl(text, source_lang='EN', target_lang='JA', auth_key=None):
         j = r.json()
         # pp.pprint(j)
         params['auth_key'] = '*auth_key*' # hide auth_key in log
-        print('DeepL API called: {}'.format([params, r.text]))
+        print('DeepL API called: {}'.format([len(params['text']), params, r.text]))
         return j['translations'][0]['text'] if 'translations' in j else None
     else:
         print('Failed to translate: {}'.format(r.text))
