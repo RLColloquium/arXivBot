@@ -19,7 +19,7 @@ def is_valid_slack_user_id(user_id):
     #     "title": "User ID",
     #     "type": "string"
     # },
-    return re.match(r'^[UW][A-Z0-9]{2,20}$', user_id) # TODO: upper limit seeems like 10 but set it 20 for safety.
+    return re.match(r'^[UW][A-Z0-9]{2,20}$', user_id) # TODO: upper limit seems like 10 but set it 20 for safety.
 
 def get_deepl_auth_key(user_id):
     if is_valid_slack_user_id(user_id) and os.getenv('DEEPL_AUTH_KEY_'+user_id):
@@ -66,7 +66,7 @@ def generate_message(r, user_id):
             translation = translate_deepl(summary, auth_key=deepl_auth_key)
             summary = translation or summary
         except:
-            print('Failed to translate: {}'.format(deepl_auth_key))
+            print('Failed to translate summary: {}'.format(summary))
             pass
     lines = [
         # r['id'],
